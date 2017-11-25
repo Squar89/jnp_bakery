@@ -80,7 +80,7 @@ Klasa Bakery<class C, class A, A shelfArea, class... P>, gdzie:
 - C jest typem pola profits (dochód piekarni, początkowo wynosi 0)
 - A jest typem parametru shelfArea
 - shelfArea to dostępna przestrzeń na półkach
-- C... to typy wypieków, które są oferowane przez piekarnię
+- P... to typy wypieków, które są oferowane przez piekarnię
 
 Konstruktor klasy Bakery:
 Bakery(P... products)
