@@ -17,7 +17,7 @@ constexpr double pi_approx(unsigned int n) {
     double cirsc = 6 * 2 / sqrt(3); // TODO - sqrt też musimy samemu przybliżać?
 
     for (int i = 0; i < n; i++) {
-        // we use formula from Achimedes "Measurement of a Circle"
+        // we use formula from Archimedes "Measurement of a Circle"
         cirsc = 2 * insc * cirsc / (insc + cirsc);
         insc = sqrt(insc * cirsc);
     }
@@ -29,9 +29,6 @@ constexpr double pi_approx(unsigned int n) {
  * Approximation of PI. Most accurate that it is possible in type double.
  */
 constexpr double PI = pi_approx(8);
-
-
-
 
 template<typename R, R radius, bool isSellable, typename P = void>
 class Pie {
