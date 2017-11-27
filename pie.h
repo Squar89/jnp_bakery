@@ -17,7 +17,7 @@ constexpr double pi_approx(unsigned int n) {
     double cirsc = 6 * 2 / sqrt(3); // TODO - sqrt też musimy samemu przybliżać?
 
     for (int i = 0; i < n; i++) {
-        // we use formula from Achimedes "Measurement of a Circle"
+        // we use formula from Archimedes "Measurement of a Circle"
         cirsc = 2 * insc * cirsc / (insc + cirsc);
         insc = sqrt(insc * cirsc);
     }
