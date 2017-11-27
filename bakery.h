@@ -137,12 +137,43 @@ class Bakery {
 
 private:
     C profits;
+    std::tuple<P...> products;
+
+    template<typename T>
+    void sellProduct() {
+        auto product = std::get<T>(products);
+        if (product.getStock() > 0) {
+            product.sell();
+            profits += product.getPrice();
+        }
+    }
 public:
-    Bakery(P... products) {
-        profits = 0;
+    explicit Bakery(P... products) :
+            profits(0),
+            products(products...) {}
+
+    C getProfits() {
+        return profits;
     }
 
 
+    template<class Product>
+    void sell() {
+        // TODO: sprawdzanie czy można sprzedać produkt (isSellable, czy typ się zgadza)
+        sellProduct<Product>();
+    }
+
+    template<class Product>
+    int getProductStock() {
+        // TODO: sprawdzanie czy typ się zgadza
+        return std::get<Product>(products).getStock();
+    }
+
+    template<class Product>
+    void restock(int additionalStock) {
+        // TODO: sprawdzanie czy jest ApplePie i czy jest na stanie
+        std::get<Product>(products).restockPies(additionalStock);
+    }
 };
 
 

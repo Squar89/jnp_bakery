@@ -63,9 +63,14 @@ template<typename R, R radius, typename P>
 class Pie<R, radius, true, P> {
     static_assert(std::is_integral<R>::value, "R type has to be integral");
     static_assert(std::is_floating_point<P>::value, "P type has to be floating point");
+    friend class Bakery;
 private:
     int stock;
     P price;
+
+    void restockPies(int amount) {
+        stock += amount;
+    }
 public:
     static constexpr bool isSellable = true;
 
