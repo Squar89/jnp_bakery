@@ -105,16 +105,10 @@ public:
 };
 
 template<typename R, R radius>
-class CherryPie : public Pie<R, radius, false> {
-public:
-    CherryPie(int initialStock) : Pie<R, radius, false>(initialStock) {}
-};
+using CherryPie = Pie<R, radius, false>;
 
 template<typename R, R radius, typename P>
-class ApplePie : public Pie<R, radius, true, P> {
-public:
-    ApplePie(int initialStock, P price) : Pie<R, radius, true, P>(initialStock, price) {}
-};
+using ApplePie = Pie<R, radius, true, P>;
 
 
 #endif //JNP1ZAD4_PIE_H
