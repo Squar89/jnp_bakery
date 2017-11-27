@@ -30,9 +30,6 @@ constexpr double pi_approx(unsigned int n) {
  */
 constexpr double PI = pi_approx(8);
 
-
-
-
 template<typename R, R radius, bool isSellable, typename P = void>
 class Pie {
 };
