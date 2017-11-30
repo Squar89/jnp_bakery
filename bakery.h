@@ -228,7 +228,6 @@ public:
     void restock(int additionalStock) {
         static_assert(contains<Product, P...>::value,
                       "podanie typu, który nie występuje na stanie piekarni musi powodować błąd kompilacji");
-        //TODO: musi być ApplePie
 
         getProduct<Product>().restockPies(additionalStock);
     }
