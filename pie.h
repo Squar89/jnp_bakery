@@ -10,6 +10,7 @@
  */
 constexpr double pi_approx(unsigned int n) {
     double pi = 0;
+  
     for (unsigned int i = 0; i < n; i++) {
         pi += 4 / (2 * (double) i + 1) * (1 - 2 * (i % 2));
     }
