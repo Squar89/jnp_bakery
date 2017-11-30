@@ -1,9 +1,7 @@
 #ifndef JNP1ZAD4_PIE_H
 #define JNP1ZAD4_PIE_H
 
-#include <cmath>
 #include <cassert>
-#include <iostream>
 
 /**
  * @return Approximation of PI
@@ -12,7 +10,8 @@
  */
 constexpr double pi_approx(unsigned int n) {
     double pi = 0;
-    for (int i = 0; i < n; i++) {
+  
+    for (unsigned int i = 0; i < n; i++) {
         pi += 4 / (2 * (double) i + 1) * (1 - 2 * (i % 2));
     }
     return pi;
@@ -23,54 +22,38 @@ constexpr double pi_approx(unsigned int n) {
  */
 constexpr double PI = pi_approx(160000);
 
-template<typename R, R radius, bool isSellable, typename P = void>
+template<typename R, R radius, bool isSellable, typename P = float>
 class Pie {
-};
-
-template<typename R, R radius>
-class Pie<R, radius, false> {
-    static_assert(std::is_integral<R>::value, "R type has to be integral");
-private:
-    int stock;
-
-public:
-    static constexpr bool isSellable = false;
-
-    typedef R SizeType;
-
-    Pie(int initialStock) :
-            stock(initialStock) {
-        assert(initialStock >= 1);
-    }
-
-    static constexpr double getArea() {
-        return (PI * radius * radius);
-    }
-
-    int getStock() {
-        return stock;
-    }
-};
-
-template<typename R, R radius, typename P>
-class Pie<R, radius, true, P> {
     static_assert(std::is_integral<R>::value, "R type has to be integral");
     static_assert(std::is_floating_point<P>::value, "P type has to be floating point");
-    friend class Bakery;
+
 private:
     int stock;
     P price;
 
-    void restockPies(int amount) {
+    template<bool b = isSellable>
+    typename std::enable_if<b, void>::type restockPies(int amount) {
         stock += amount;
     }
+
 public:
-    static constexpr bool isSellable = true;
+    /*template<bool b = isSellable>
+    static constexpr bool isSellable = b;//TODO potrzebujemy tego?
+    */
 
     typedef R SizeType;
 
     typedef P PriceType;
 
+    //CherryPie constructor
+    template<bool b = isSellable, typename std::enable_if<!b, bool>::type = false>
+    Pie(int initialStock) :
+            stock(initialStock) {
+        assert(initialStock >= 1);
+    }
+
+    //ApplePie constructor
+    template<bool b = isSellable, typename std::enable_if<b, bool>::type = false>
     Pie(int initialStock, P price) :
             stock(initialStock),
             price(price) {
@@ -85,11 +68,13 @@ public:
         return stock;
     }
 
-    P getPrice() {
+    template<bool b = isSellable>
+    typename std::enable_if<b, P>::type getPrice() {
         return price;
     }
 
-    void sell() {
+    template<bool b = isSellable>
+    typename std::enable_if<b, void>::type sell() {
         if (stock >= 1) {
             stock--;
         }
