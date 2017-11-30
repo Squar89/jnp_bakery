@@ -37,10 +37,10 @@ private:
     P price;
 
 public:
-    /*
-    template<bool b = isSellable>
-    static constexpr bool isSellable = b;//TODO potrzebujemy tego?
-    */
+
+    //template<bool b = isSellable>
+    static constexpr bool sellable = isSellable;//TODO potrzebujemy tego?
+
 
     typedef T SizeType;
 

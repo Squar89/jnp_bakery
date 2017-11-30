@@ -117,8 +117,7 @@ public:
 template<typename C, typename P>
 struct have_good_price_type<C, P> {
 public:
-    static constexpr bool value = (!P::isSellable) || (std::is_same<C, typename P::PriceType>::value);
-    //TODO - trzeba zrobić jakoś, żeby się ewaluowało leniwie, albo wypiek zawsze miał PriceType
+    static constexpr bool value = (!P::sellable) || (std::is_same<C, typename P::PriceType>::value);
 };
 
 
@@ -164,8 +163,8 @@ class Bakery {
                   "A type has to be integral");
     static_assert(have_good_size_type<A, P...>::value,
                   "typ wymiaru wszystkich produktów w piekarni musi być taki sam jak typ A");
-    //static_assert(have_good_price_type<C, P...>::value,
-      //            "typ ceny wszystkich produktów (przeznaczonych na sprzedaż) w piekarni musi być taki sam jak typ C");
+    static_assert(have_good_price_type<C, P...>::value,
+                  "typ ceny wszystkich produktów (przeznaczonych na sprzedaż) w piekarni musi być taki sam jak typ C");
     static_assert(sum_of_areas<A, P...>::value <= shelfArea,
                   "produkty w piekarni nie mogą mieć łącznej powierzchni większej niż przestrzeń na półkach");
     static_assert(are_unique<P...>::value,
@@ -207,7 +206,7 @@ public:
     void sell() {
         static_assert(contains<Product, P...>::value,
                       "podanie typu, który nie występuje na stanie piekarni musi powodować błąd kompilacji");
-        static_assert(Product::isSellable,
+        static_assert(Product::sellable,
                       "Product isn't sellable.");
 
         auto& product = getProduct<Product>();
@@ -231,7 +230,7 @@ public:
                       "podanie typu, który nie występuje na stanie piekarni musi powodować błąd kompilacji");
         //TODO: musi być ApplePie
 
-        std::get<Product>(productsTuple).restockPies(additionalStock);
+        getProduct<Product>().restockPies(additionalStock);
     }
 
 

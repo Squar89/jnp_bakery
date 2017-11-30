@@ -2,6 +2,7 @@
 #define JNP1ZAD4_PIE_H
 
 #include <cassert>
+#include <iostream>
 
 /**
  * @return Approximation of PI
@@ -12,7 +13,7 @@ constexpr double pi_approx(unsigned int n) {
     double pi = 0;
   
     for (unsigned int i = 0; i < n; i++) {
-        pi += 4 / (2 * (double) i + 1) * (1 - 2 * (i % 2));
+        pi += 4 / (2 * (double) i + 1) * (1 - 2 * ((int) i % 2));
     }
     return pi;
 }
@@ -37,9 +38,9 @@ private:
     }
 
 public:
-    /*template<bool b = isSellable>
-    static constexpr bool isSellable = b;//TODO potrzebujemy tego?
-    */
+    //template<bool b = isSellable>
+    static constexpr bool sellable = isSellable;//TODO potrzebujemy tego?
+
 
     typedef R SizeType;
 
