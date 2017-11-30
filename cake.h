@@ -1,6 +1,8 @@
 #ifndef JNP1ZAD4_CAKE_H
 #define JNP1ZAD4_CAKE_H
 
+#include <cassert>
+
 /**
  * @return Approximation of ln(@param a)
  * Calculates (@param n)-th partial sum of Taylor`s series:
@@ -12,7 +14,7 @@ constexpr double ln_approx(double a, unsigned int n) {
 
     double xpow = x;
     double sum = 0;
-    for (int i = 1; i <= n; i++) {
+    for (unsigned int i = 1; i <= n; i++) {
         sum += xpow / (2 * i - 1);
         xpow *= x*x;
     }
@@ -25,49 +27,34 @@ constexpr double ln_approx(double a, unsigned int n) {
  */
 constexpr double LN2 = ln_approx(2, 6);
 
-template<typename T, T length, T width, bool isSellable, typename P = void>
+template<typename T, T length, T width, bool isSellable, typename P = float>
 class Cake {
-
-};
-
-template<typename T, T length, T width>
-class Cake<T, length, width, false> {
-    static_assert(std::is_integral<T>::value, "T type has to be integral");
-private:
-    int stock;
-public:
-    static constexpr bool isSellable = false;
-
-    typedef T SizeType;
-
-    Cake(int initialStock) :
-            stock(initialStock) {
-        assert(initialStock >= 1);
-    }
-
-    static constexpr double getArea() {
-        return LN2 * length * width;
-    }
-
-    int getStock() {
-        return stock;
-    }
-};
-
-template<typename T, T length, T width, typename P>
-class Cake<T, length, width, true, P> {
     static_assert(std::is_integral<T>::value, "T type has to be integral");
     static_assert(std::is_floating_point<P>::value, "P type has to be floating point");
+
 private:
     int stock;
     P price;
+
 public:
-    static constexpr bool isSellable = true;
+    /*
+    template<bool b = isSellable>
+    static constexpr bool isSellable = b;//TODO potrzebujemy tego?
+    */
 
     typedef T SizeType;
 
     typedef P PriceType;
 
+    //CheeseCake constructor
+    template<bool b = isSellable, typename std::enable_if<!b, bool>::type = false>
+    Cake(int initialStock) :
+            stock(initialStock) {
+        assert(initialStock >= 1);
+    }
+
+    //CreamCake constructor
+    template<bool b = isSellable, typename std::enable_if<b, bool>::type = false>
     Cake(int initialStock, P price) :
             stock(initialStock),
             price(price) {
@@ -82,11 +69,13 @@ public:
         return stock;
     }
 
-    P getPrice() {
+    template<bool b = isSellable>
+    typename std::enable_if<b, P>::type getPrice() {
         return price;
     }
 
-    void sell() {
+    template<bool b = isSellable>
+    typename std::enable_if<b, void>::type sell() {
         if (stock >= 1) {
             stock--;
         }
