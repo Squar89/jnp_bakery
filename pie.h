@@ -2,7 +2,6 @@
 #define JNP1ZAD4_PIE_H
 
 #include <cassert>
-#include <iostream>
 
 /**
  * @return Approximation of PI
@@ -32,15 +31,8 @@ private:
     int stock;
     P price;
 
-    template<bool b = isSellable>
-    typename std::enable_if<b, void>::type restockPies(int amount) {
-        stock += amount;
-    }
-
 public:
-    //template<bool b = isSellable>
-    static constexpr bool sellable = isSellable;//TODO potrzebujemy tego?
-
+    static constexpr bool sellable = isSellable;
 
     typedef R SizeType;
 
@@ -79,9 +71,11 @@ public:
         if (stock >= 1) {
             stock--;
         }
-        else {
-            std::cerr << "Stock is empty. Nothing to sell." << std::endl;
-        }
+    }
+
+    template<bool b = isSellable>
+    typename std::enable_if<b, void>::type restockPies(int amount) {
+        stock += amount;
     }
 };
 

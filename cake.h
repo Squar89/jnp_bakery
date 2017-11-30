@@ -37,10 +37,7 @@ private:
     P price;
 
 public:
-
-    //template<bool b = isSellable>
-    static constexpr bool sellable = isSellable;//TODO potrzebujemy tego?
-
+    static constexpr bool sellable = isSellable;
 
     typedef T SizeType;
 
@@ -78,9 +75,6 @@ public:
     typename std::enable_if<b, void>::type sell() {
         if (stock >= 1) {
             stock--;
-        }
-        else {
-            std::cerr << "Stock is empty. Nothing to sell." << std::endl;
         }
     }
 };
