@@ -85,5 +85,4 @@ using CherryPie = Pie<R, radius, false>;
 template<typename R, R radius, typename P>
 using ApplePie = Pie<R, radius, true, P>;
 
-
 #endif //JNP1ZAD4_PIE_H
