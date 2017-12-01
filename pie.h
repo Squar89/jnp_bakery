@@ -4,24 +4,18 @@
 #include <cassert>
 #include <type_traits>
 
-/**
- * @return Approximation of PI
- * Leibnitz`s method -
- * Calculates (@param n)-th partial sum of Maclaurin`s series for function y = arctg(x) and x = 1
- */
 constexpr double pi_approx(unsigned int n) {
     double pi = 0;
+    double temp = 2;
 
-    for (unsigned int i = 0; i < n; i++) {
-        pi += 4 / (2 * (double) i + 1) * (1 - 2 * ((int) i % 2));
+    for (unsigned int i = 1; i < n; i++) {
+        pi += temp;
+        temp = temp * i / (2 * i + 1);
     }
     return pi;
 }
 
-/**
- * Approximation of PI. Most accurate that it is possible in type double.
- */
-constexpr double PI = pi_approx(160000);
+constexpr double PI = pi_approx(50);
 
 template<typename R, R radius, bool isSellable, typename P = float>
 class Pie {
