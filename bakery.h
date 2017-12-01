@@ -182,12 +182,10 @@ public:
     void sell() {
         static_assert(contains<Product, P...>::value,
                       "Given type doesn't exist in this bakery");
-        /* static_assert(Product::sellable,
-                      "Product isn't sellable."); */
-
+        
         auto& product = getProduct<Product>();
         if (product.getStock() >= 1) {
-            product.sell();//TODO jeśli stock == 0 i produkt nie jest na sprzedaż, będzie error?
+            product.sell();
             profits += product.getPrice();
         }
     }
