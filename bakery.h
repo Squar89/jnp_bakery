@@ -28,8 +28,8 @@ struct sum_of_areas<A, P> {
 };
 
 /**
- * Provides the member constant value equal to true, if type @tparam P is distinct from all other types (@tparam Q and @tparam Other)
- * Otherwise value == false
+ * Provides the member constant value equal to true, if type @tparam P is distinct
+ * from all other types (@tparam Q and @tparam Other). Otherwise value == false
  */
 template<typename P, typename Q, typename... Other>
 struct is_first_unique {
@@ -47,8 +47,8 @@ struct is_first_unique<P, Q> {
 };
 
 /**
- * Provides the member constant value equal to true, if all types (@tparam P @tparam Q @tparam Other) are pairwise distinct
- * O(n^2), where n is number of tparams
+ * Provides the member constant value equal to true, if all types (@tparam P @tparam Q @tparam Other)
+ * are pairwise distinct. O(n^2), where n is number of tparams
  */
 template<typename P, typename Q = void, typename... Other>
 struct are_unique {

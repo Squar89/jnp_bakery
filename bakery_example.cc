@@ -42,61 +42,61 @@ int main() {
 
 /* Poniższe przykłady nie kompilują się. */
 
-//    auto bakery2 = Bakery<
-//        int, // Nie jest typem zmiennoprzecinkowym.
-//        int,
-//        10,
-//        CherryPie <int, 1>
-//    >(
-//        CherryPie<int, 1>(3)
-//    );
+   // auto bakery2 = Bakery<
+   //     int, // Nie jest typem zmiennoprzecinkowym.
+   //     int,
+   //     10,
+   //     CherryPie <int, 1>
+   // >(
+   //     CherryPie<int, 1>(3)
+   // );
 
-//    auto bakery3 = Bakery<
-//        float,
-//        float, // Nie jest typem całkowitym.
-//        10,
-//        CherryPie<int, 1>
-//    >(
-//        CherryPie<int, 1>(3)
-//    );
+   // auto bakery3 = Bakery<
+   //     float,
+   //     float, // Nie jest typem całkowitym.
+   //     10,
+   //     CherryPie<int, 1>
+   // >(
+   //     CherryPie<int, 1>(3)
+   // );
 
-//    auto bakery4 = Bakery<
-//        float,
-//        int,
-//        10,
-//        CherryPie<int, 1>,
-//        CherryPie<int, 1> // Typy nie mogą się powtarzać.
-//    >(
-//        CherryPie<int, 1>(3),
-//        CherryPie<int, 1>(4)
-//    );
+   // auto bakery4 = Bakery<
+   //     float,
+   //     int,
+   //     10,
+   //     CherryPie<int, 1>,
+   //     CherryPie<int, 1> // Typy nie mogą się powtarzać.
+   // >(
+   //     CherryPie<int, 1>(3),
+   //     CherryPie<int, 1>(4)
+   // );
 
-//    auto bakery5 = Bakery<
-//        float,
-//        int,
-//        1, // Za mała przestrzeń na półkach.
-//        CherryPie<int, 2>
-//    >(
-//        CherryPie<int, 2>(3)
-//    );
+   // auto bakery5 = Bakery<
+   //     float,
+   //     int,
+   //     1, // Za mała przestrzeń na półkach.
+   //     CherryPie<int, 2>
+   // >(
+   //     CherryPie<int, 2>(3)
+   // );
 
-//    auto bakery6 = Bakery<
-//        float,
-//        long, // Niekompatybilne typy wymiaru w produktach.
-//        10,
-//        CherryPie<int, 1>
-//    >(
-//        CherryPie<int, 1>(3)
-//    );
+   // auto bakery6 = Bakery<
+   //     float,
+   //     long, // Niekompatybilne typy wymiaru w produktach.
+   //     10,
+   //     CherryPie<int, 1>
+   // >(
+   //     CherryPie<int, 1>(3)
+   // );
 
-//    auto bakery7 = Bakery<
-//        double, // Niekompatybilne typy ceny w produktach.
-//        int,
-//        10,
-//        ApplePie<int, 1, float>
-//    >(
-//        ApplePie<int, 1, float>(3, 1.4f)
-//    );
+   // auto bakery7 = Bakery<
+   //     double, // Niekompatybilne typy ceny w produktach.
+   //     int,
+   //     10,
+   //     ApplePie<int, 1, float>
+   // >(
+   //     ApplePie<int, 1, float>(3, 1.4f)
+   // );
 
 //    bakery.sell<CherryPie<int, 1>>(); // CherryPie nie jest na sprzedaż.
 //    bakery.sell<ApplePie<int, 4, float>>(); // Takiego typu nie ma na stanie.
