@@ -147,8 +147,8 @@ void areaSpaceErrors() {
     using ChC = CheeseCake<int, 1, 1>;
     using CrC = CreamCake<int, 2, 5, float>;
 
-    /* TODO */
-    /*auto bakerySpaceErrorsA = Bakery<float, int, 89,
+    /*std::cout << "to ten tutaj:\n";
+    auto bakerySpaceErrorsA = Bakery<float, int, 89,
         ChP,
         ApP,
         ChC,
@@ -158,7 +158,8 @@ void areaSpaceErrors() {
         ApP(2, 4.5f),
         ChC(2),
         CrC(2, 4.5f)
-        );*/
+        );
+    */
 
     auto bakerySpaceA = Bakery<float, int, 90,
         ChP,
@@ -184,7 +185,6 @@ void areaSpaceErrors() {
         CrC(2, 4.5f)
         );*/
 
-    /* TODO */
     /*auto bakerySpaceErrorsC = Bakery<float, int, 533,
         CherryPie<int, 13>,
         CreamCake<int, 3, 1, float>
@@ -201,7 +201,6 @@ void areaSpaceErrors() {
         CreamCake<int, 3, 1, float>(1, 1.0f)
         );
 
-    /* TODO */
     /*auto bakerySpaceErrorsD = Bakery<float, int, 540,
         CherryPie<int, 13>,
         CreamCake<int, 7, 2, float>

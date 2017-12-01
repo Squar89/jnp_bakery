@@ -15,19 +15,19 @@ private:
      * @tparam R type of first bakery product
      * @tparam Other types of other bakery products
      */
-    template<typename B, typename R, typename... Other>
+    template<typename R, typename... Other>
     struct sum_of_areas {
         //calculate sum of areas recursively
-        static constexpr B value = R::getArea() + sum_of_areas<B, Other...>::value;
+        static constexpr auto value = R::getArea() + sum_of_areas<Other...>::value;
     };
 
     /**
      * Specialization for only one bakery product - base case.
      */
-    template<typename B, typename R>
-    struct sum_of_areas<B, R> {
+    template<typename R>
+    struct sum_of_areas<R> {
         //base case
-        static constexpr B value = R::getArea();
+        static constexpr auto value = R::getArea();
     };
 
     /**
@@ -142,7 +142,7 @@ private:
                   "Size type of all products in bakery has to be A");
     static_assert(have_good_price_type<C, P...>::value,
                   "Price type of all sellable products in bakery has to be C");
-    static_assert(sum_of_areas<A, P...>::value <= shelfArea,
+    static_assert(sum_of_areas<P...>::value <= shelfArea,
                   "Sum of products areas can't exceed Bakery's available shelf space");
     static_assert(are_unique<P...>::value,
                   "Types in P have to be unique");
