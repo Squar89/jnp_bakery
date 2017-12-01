@@ -4,14 +4,21 @@
 #include <cassert>
 #include <type_traits>
 
+
+/**
+ * Newton method
+ */
 constexpr double pi_approx(unsigned int n) {
     double pi = 0;
-    double temp = 2;
+    double temp = 1;
 
     for (unsigned int i = 1; i < n; i++) {
         pi += temp;
         temp = temp * i / (2 * i + 1);
     }
+
+    pi *= 2;
+    
     return pi;
 }
 
