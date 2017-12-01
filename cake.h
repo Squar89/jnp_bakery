@@ -2,6 +2,7 @@
 #define JNP1ZAD4_CAKE_H
 
 #include <cassert>
+#include <type_traits>
 
 /**
  * @return Approximation of ln(@param a)

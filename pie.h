@@ -2,6 +2,7 @@
 #define JNP1ZAD4_PIE_H
 
 #include <cassert>
+#include <type_traits>
 
 /**
  * @return Approximation of PI
@@ -10,7 +11,7 @@
  */
 constexpr double pi_approx(unsigned int n) {
     double pi = 0;
-  
+
     for (unsigned int i = 0; i < n; i++) {
         pi += 4 / (2 * (double) i + 1) * (1 - 2 * ((int) i % 2));
     }
@@ -74,8 +75,10 @@ public:
     }
 
     template<bool b = isSellable>
-    typename std::enable_if<b, void>::type restockPies(int amount) {
-        stock += amount;
+    typename std::enable_if<b, void>::type restock(int amount) {
+        if (stock + amount >= 0) {
+            stock += amount;
+        }
     }
 };
 

@@ -1,7 +1,7 @@
 #ifndef JNP1ZAD4_BAKERY_H
 #define JNP1ZAD4_BAKERY_H
 
-#include <utility>
+#include <type_traits>
 #include <tuple>
 #include "pie.h"
 #include "cake.h"
@@ -205,7 +205,7 @@ public:
         static_assert(contains<Product, P...>::value,
                       "Given type doesn't exist in this bakery");
 
-        getProduct<Product>().restockPies(additionalStock);
+        getProduct<Product>().restock(additionalStock);
     }
 };
 
